@@ -1,0 +1,269 @@
+/* General layout */
+body {
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f4f6f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.counter-grid {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.counter-box {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(4px);
+  border-radius: 12px;
+  padding: 20px 30px;
+  color: white;
+  text-align: center;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  min-width: 180px;
+}
+
+/* Remove default white card look from the first (Home) section */
+.tab-content .section.level1:first-of-type,
+.section.level1:first-of-type {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Neutralize inner wrappers that add spacing/background */
+.section.level1:first-of-type .page-columns,
+.section.level1:first-of-type .page-columns .column {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Full-width hero (no rounded corners/shadow) */
+.section.level1:first-of-type {
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  min-height: 0 !important;   /* prevent flexdashboard from forcing tall height */
+}
+
+/* Ensure the hero itself defines the height */
+.home-hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;    /* vertically center content */
+  align-items: center;
+  min-height: 60vh;           /* hero fills 60% of viewport height */
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #1d976c, #93f9b9);
+  color: #fff;
+  border-radius: 0;
+  margin: 0;
+  box-shadow: none;
+  width: 100%;
+  animation: fadeIn 1.2s ease;
+}
+
+/* Counter styling (keep or refine as needed) */
+.counter-grid {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+.counter-box {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(4px);
+  border-radius: 12px;
+  padding: 20px 30px;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  min-width: 180px;
+}
+.counter-label {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.counter {
+  font-size: 2.8em;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* Fade-in (shared) */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Navbar styling */
+.navbar {
+  background: linear-gradient(90deg, #3498db, #2ecc71);
+  padding: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.navbar a {
+  color: white !important;
+  font-weight: 600;
+  margin-right: 20px;
+  transition: color 0.3s ease;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+.navbar a:hover,
+.navbar a:focus,
+.navbar a:active {
+  color: #ffeb3b !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+/* Modern dropdown menu styling */
+.navbar .dropdown-menu {
+  background: #2c3e50;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  border: none;
+}
+
+.navbar .dropdown-menu a {
+  color: #ecf0f1 !important;
+  font-weight: 500;
+  padding: 8px 16px;
+  transition: background 0.3s ease, color 0.3s ease;
+  border-radius: 6px;
+}
+
+.navbar .dropdown-menu a:hover {
+  background: #3498db;
+  color: #fff !important;
+}
+
+.navbar .dropdown-divider {
+  border-top: 1px solid #444;
+  margin: 6px 0;
+}
+
+/* NEW: Home hero for GS Team Dashboard */
+.home-hero {
+  text-align: center;
+  padding: 100px 20px;
+  background: linear-gradient(135deg, #1d976c, #93f9b9);
+  color: white;
+  border-radius: 18px;
+  margin-bottom: 40px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+  animation: fadeIn 1.2s ease;
+}
+
+.home-hero h1 {
+  font-size: 3.5em;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin: 0;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.25);
+  position: relative;
+}
+
+.home-hero h1::after {
+  content: "";
+  display: block;
+  width: 140px;
+  height: 4px;
+  margin: 20px auto 0;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #ffeb3b, #ffffff);
+  opacity: 0.9;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Section cards */
+.card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* Pathogen-specific themes */
+.bacteria { border-left: 6px solid #e67e22; }
+.fungi    { border-left: 6px solid #27ae60; }
+.viruses  { border-left: 6px solid #2980b9; }
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #2c3e50;
+  color: #bdc3c7;
+  margin-top: 40px;
+  border-radius: 8px;
+}
+
+/* Virus card styling */
+.virus-card {
+  background: #fff;
+  border-left: 6px solid #2980b9; /* virus theme color */
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 30px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  animation: fadeIn 1.2s ease;
+}
+
+.virus-card h2 {
+  font-size: 1.8em;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 12px;
+  color: #2980b9;
+}
+
+.card-desc {
+  font-size: 1.1em;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+/* Styled link button */
+.button.virus-link {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background: #2980b9;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+}
+
+.button.virus-link:hover {
+  background: #1f6391;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+

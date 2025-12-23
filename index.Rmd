@@ -1,0 +1,136 @@
+---
+title: "GS Lab Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    vertical_layout: fill
+css: css/styles.css
+---
+
+Home
+=====================================
+
+```{r home_counter, echo=FALSE, results='asis'}
+htmltools::browsable(
+  htmltools::tagList(
+    # Hero + counters (generated as real HTML)
+    htmltools::tags$div(class = "home-hero",
+      htmltools::tags$h1("👋 Welcome to the GS Team Dashboard"),
+      htmltools::tags$div(class = "counter-grid",
+        htmltools::tags$div(class = "counter-box",
+          htmltools::tags$div(class = "counter-label", "🦠 Bacteria Cases"),
+          htmltools::tags$div(class = "counter", `data-target` = "1000", "0")
+        ),
+        htmltools::tags$div(class = "counter-box",
+          htmltools::tags$div(class = "counter-label", "🍄 Fungi Cases"),
+          htmltools::tags$div(class = "counter", `data-target` = "1000", "0")
+        ),
+        htmltools::tags$div(class = "counter-box",
+          htmltools::tags$div(class = "counter-label", "💉 Virus Cases"),
+          htmltools::tags$div(class = "counter", `data-target` = "1000", "0")
+        )
+      )
+    ),
+
+    # Inline JS injected via htmltools (not escaped, reliably executed)
+    htmltools::tags$script(
+      htmltools::HTML("
+      document.addEventListener('DOMContentLoaded', function() {
+        var counters = document.querySelectorAll('.counter');
+        counters.forEach(function(counter) {
+          var target = Number(counter.getAttribute('data-target'));
+          var count = 0;
+          var step = Math.max(1, Math.ceil(target / 120)); // ~2s animation
+          function update() {
+            count += step;
+            if (count >= target) {
+              counter.textContent = target.toLocaleString();
+            } else {
+              counter.textContent = count.toLocaleString();
+              requestAnimationFrame(update);
+            }
+          }
+          update();
+        });
+      });
+      ")
+    )
+  )
+)
+```
+
+---
+
+Food-borne {data-navmenu="🦠Bacteria"} 
+===================================== 
+
+### E. coli 
+
+Content for E. coli (plots, notes, links). 
+
+---
+
+### Listeria 
+
+Content for Listeria. 
+
+--- 
+
+Clinical {data-navmenu="🦠Bacteria"} 
+===================================== 
+
+### Overview 
+
+Content for H. influenzae. 
+
+---
+
+Fungi {data-navmenu="🍄Fungi"} 
+===================================== 
+
+### Overview 
+
+Content for fungal pathogens. 
+
+--- 
+
+Seasonal influenza {data-navmenu="💉Viruses"} 
+===================================== 
+
+::: virus-card
+<h2>H1N1</h2>
+<p class="card-desc">
+Explore the <strong>H1N1 lineages</strong> with clade-aware phylogenetics.
+</p>
+<a href="https://nextstrain.org/groups/HTI-Micro-Lab/h1n1pdm/ha" 
+   target="_blank" class="button virus-link">View Nextstrain Visualization</a>
+:::
+
+---
+
+::: virus-card
+<h2>H3N2</h2>
+<p class="card-desc">
+Explore the <strong>H3N2 lineages</strong> with clade-aware phylogenetics.
+</p>
+<a href="https://nextstrain.org/groups/HTI-Micro-Lab/h3n2/ha" 
+   target="_blank" class="button virus-link">View Nextstrain Visualization</a>
+:::
+
+---
+
+Avian influenza {data-navmenu="💉Viruses"} 
+===================================== 
+
+#### Avian flu 
+
+Content for avian influenza. 
+
+--- 
+
+SARS-CoV-2 {data-navmenu="💉Viruses"} 
+===================================== 
+
+### SARS-CoV-2 
+
+Content for SARS-CoV-2 (plots, links, etc.)
