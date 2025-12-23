@@ -11,6 +11,10 @@ Home
 =====================================
 
 ```{r home_counter, echo=FALSE, results='asis'}
+library(tidyverse)
+library(plotly)
+library(openxlsx)
+
 htmltools::browsable(
   htmltools::tagList(
     # Hero + counters (generated as real HTML)
@@ -97,27 +101,52 @@ Content for fungal pathogens.
 Seasonal influenza {data-navmenu="💉Viruses"} 
 ===================================== 
 
-::: virus-card
-<h2>H1N1</h2>
-<p class="card-desc">
-Explore the <strong>H1N1 lineages</strong> with clade-aware phylogenetics.
-</p>
-<a href="https://nextstrain.org/groups/HTI-Micro-Lab/h1n1pdm/ha" 
-   target="_blank" class="button virus-link">View Nextstrain Visualization</a>
+<div class="section-header influenza-header"> 
+  <h2> &nbsp; Seasonal Influenza</h2> 
+</div>
+
+```{r CHP_flu_stat, cache=T}
+CHP_flu_stat <- read.xlsx("data/CHP_detection_statistics_24Nov2025.xlsx", sheet = "Influenza") %>% 
+  as_tibble() %>% 
+  pivot_longer(-c(1:4), names_to = c("Subtype", ".value"), names_pattern = "(.*)_(.*)") %>% 
+  mutate(Influenza = ifelse(grepl("^H", Subtype), "A", sub("Flu", "", Subtype)),
+         Date = as.Date(paste0(sub(".*- ", "", Date), "/", Year), "%d/%m/%Y"))
+
+dbreaks <- seq(as.Date("2019-01-01"), as.Date("2025-12-31"), by = "1 month")
+target_months <- c("01", "05", "09", "12")
+dbreaks2 <- dbreaks[format(dbreaks, "%m") %in% target_months]
+
+(ggplot(CHP_flu_stat %>% filter(!Subtype %in% c("H5", "H7", "H9", "FluC")), 
+       aes(Date, number, fill = Subtype)) +
+  geom_col(position = "stack") +
+  facet_grid(~ Year, scale = "free", switch = "x") +
+  scale_fill_manual(values = c("#D62728", "#1F77B4", "#2CA02C")) +
+  scale_x_date(date_breaks = "3 months", 
+               date_labels = "%b",
+               expand = c(0.01, -2)) +
+  ylab("Count") +
+  ggtitle("CHP Influenza trend in Hong Kong") +
+  theme(strip.placement = "outside",
+        panel.spacing = unit(0.1, "lines"))) %>% 
+  ggplotly() %>% 
+  layout(plot_bgcolor = "transparent", paper_bgcolor = "#f4f6f9", legend = list(bgcolor = "#f4f6f9", bordercolor = "transparent"))
+```
+
+::: flu-grid
+<div class="flu-card">
+  <h3>H1N1</h3>
+  <p>Explore the H1N1 seasonal lineages in Hong Kong.</p>
+  <a href="https://nextstrain.org/groups/HTI-Micro-Lab/h1n1pdm/ha" 
+     target="_blank" class="button virus-link">View Nextstrain</a>
+</div>
+
+<div class="flu-card">
+  <h3>H3N2</h3>
+  <p>Explore the H3N2 seasonal lineages in Hong Kong.</p>
+  <a href="https://nextstrain.org/groups/HTI-Micro-Lab/h3n2/ha" 
+     target="_blank" class="button virus-link">View Nextstrain</a>
+</div>
 :::
-
----
-
-::: virus-card
-<h2>H3N2</h2>
-<p class="card-desc">
-Explore the <strong>H3N2 lineages</strong> with clade-aware phylogenetics.
-</p>
-<a href="https://nextstrain.org/groups/HTI-Micro-Lab/h3n2/ha" 
-   target="_blank" class="button virus-link">View Nextstrain Visualization</a>
-:::
-
----
 
 Avian influenza {data-navmenu="💉Viruses"} 
 ===================================== 

@@ -242,6 +242,103 @@ footer {
   color: #2980b9;
 }
 
+/* Grid container for influenza cards */
+.flu-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;   /* allows wrapping on smaller screens */
+  margin-top: 20px;
+}
+
+/* Grid container spans full width */
+.flu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;  /* two equal columns */
+  gap: 30px;
+  margin-top: 20px;
+  width: 100%;                     /* full width of section */
+}
+
+/* Each card fills its grid cell */
+.flu-card {
+  background: #fff;
+  border-left: 6px solid #2980b9;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  text-align: center;
+  animation: fadeIn 1.2s ease;
+  width: 100%;                      /* take full cell width */
+}
+
+.flu-card h3 {
+  margin-top: 0;
+  color: #2980b9;
+  font-weight: 700;
+}
+
+.flu-card p {
+  color: #555;
+  margin-bottom: 15px;
+}
+
+/* Section header styling */
+.section-header {
+  text-align: left;       /* left-align text */
+  margin: 20px 0 30px;    /* spacing above/below */
+  padding: 0;             /* no background padding */
+}
+
+.section-header h2 {
+  font-size: 2.2em;
+  font-weight: 800;
+  margin: 0;
+  color: #333;            /* neutral text color */
+  letter-spacing: 0.5px;
+}
+
+
+/* Styled link button */
+.button.virus-link {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  background: #2980b9;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+}
+
+.button.virus-link:hover {
+  background: #1f6391;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+
+/* Styled link button */
+.button.virus-link {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  background: #2980b9;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+}
+
+.button.virus-link:hover {
+  background: #1f6391;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+
 .card-desc {
   font-size: 1.1em;
   margin-bottom: 20px;
@@ -265,5 +362,17 @@ footer {
   background: #1f6391;
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+/* Force plotly widgets to use full width */
+.plotly html-widget {
+  width: 100% !important;
+}
+
+.plotly {
+  width: 100% !important;
+}
+/* Force plotly widgets to inherit body background */
+.plotly html-widget {
+  background-color: #f4f6f9;
 }
 
